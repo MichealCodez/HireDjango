@@ -1,8 +1,8 @@
 from django.urls import path
 
-from .views import (index, pricing, profile, about, BusinessCreateView,
-                    FreelancerCreateView, FreelancerUpdateView,
-                    FreelancerDetailView, handle_login, list_developers,)
+from .views import (BusinessCreateView, FreelancerCreateView,
+                    FreelancerDetailView, FreelancerUpdateView, about,
+                    handle_login, index, list_developers, pricing, profile)
 
 urlpatterns = [
     path('', index, name='home'),
@@ -11,9 +11,9 @@ urlpatterns = [
     path('pricing/', pricing, name='pricing'),
     # path('developers/', FreelancerListView.as_view(), name='freelancer-list'),
     path('account-setup/', handle_login, name='handle-login'),
-    path('developer/<int:pk>/', FreelancerDetailView.as_view(), name='freelancer-detail'),
     path('developer/create/', FreelancerCreateView.as_view(), name="freelancer-create"),
     path('developer/update/', FreelancerUpdateView.as_view(), name="freelancer-update"),
     path('business/create/', BusinessCreateView.as_view(), name="business-create"),
     path('developers/',list_developers,name="list-developers"),
+    path('developer/<slug:username>/', FreelancerDetailView.as_view(), name='freelancer-detail'),
 ]
